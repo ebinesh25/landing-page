@@ -31,19 +31,28 @@
           rotate: calc(var(--r, 0) * 90deg);
           opacity: 1;
         }
-
         &:last-child {
           &:hover {
             color: #eafd64;
           }
         }
       }
+
+      .grid div.active {
+        transition-duration: 0s;
+        rotate: calc(var(--r, 0) * 90deg);
+        opacity: 1;
+      }
+
+      .grid div:last-child.active {
+        color: #eafd64;
+      }
     </style>
   </head>
   <body class="bg-black flex items-center justify-center h-screen">
     <div class="text-center">
       <h1 class="text-4xl font-bold text-left text-[#eafd64] mb-4">Hey !</h1>
-      <div class="grid" style="--o: 0.2; --r: 3">
+      <div class="grid" id="grid" style="--o: 0.2; --r: 3">
         <div>+</div>
         <div>+</div>
         <div>+</div>
@@ -106,15 +115,62 @@
         <div>+</div>
       </div>
       <div class="mt-6 flex justify-start space-x-4">
-        <a href="https://github.com/ebinesh25"
-           class="inline-block text-white underline underline-offset-4 rounded-xl font-medium shadow-sm hover:no-underline hover:text-[#eafd64] transition-all ">
+        <a
+          href="https://github.com/ebinesh25"
+          class="inline-block text-white underline underline-offset-4 rounded-xl font-medium shadow-sm hover:no-underline hover:text-[#eafd64] transition-all"
+        >
           GitHub
         </a>
-        <a href="https://www.linkedin.com/in/ebinesh"
-           class="inline-block text-white rounded-xl underline underline-offset-4 font-medium shadow-sm hover:no-underline hover:text-[#eafd64] transition-all ">
+        <a
+          href="https://www.linkedin.com/in/ebinesh"
+          class="inline-block text-white rounded-xl underline underline-offset-4 font-medium shadow-sm hover:no-underline hover:text-[#eafd64] transition-all"
+        >
           LinkedIn
         </a>
       </div>
     </div>
+
+    <script>
+      const grid = document.getElementById("grid");
+      const cells = grid.querySelectorAll("div");
+      let lastTouchedCell = null;
+
+      // Handle touch move for swiping effect
+      grid.addEventListener("touchmove", (e) => {
+        e.preventDefault();
+        const touch = e.touches[0];
+        const element = document.elementFromPoint(touch.clientX, touch.clientY);
+
+        if (element && element.parentElement === grid) {
+          if (lastTouchedCell && lastTouchedCell !== element) {
+            lastTouchedCell.classList.remove("active");
+          }
+          element.classList.add("active");
+          lastTouchedCell = element;
+        }
+      });
+
+      // Remove active class when touch ends
+      grid.addEventListener("touchend", () => {
+        if (lastTouchedCell) {
+          setTimeout(() => {
+            lastTouchedCell.classList.remove("active");
+            lastTouchedCell = null;
+          }, 800);
+        }
+      });
+
+      // Also handle individual cell touches
+      cells.forEach((cell) => {
+        cell.addEventListener("touchstart", (e) => {
+          e.preventDefault();
+          if (lastTouchedCell && lastTouchedCell !== cell) {
+            lastTouchedCell.classList.remove("active");
+          }
+          cell.classList.add("active");
+          lastTouchedCell = cell;
+        });
+      });
+    </script>
   </body>
 </html>
