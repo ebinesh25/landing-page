@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tailwind CDN Example</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .grid {
+        touch-action: none;
+        display: grid;
+        grid-template: repeat(var(--rows, 6), 1fr) / repeat(
+            var(--cols, 10),
+            1fr
+          );
+        font-size: 2rem;
+        font-weight: 600;
+        line-height: 1;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        cursor: pointer;
+        height: fit-content;
+      }
+      .grid div {
+        opacity: var(--o);
+        color: white;
+        transition: opacity 0.8s, rotate 0.4s;
+        padding: 0.5rem;
+        &:hover {
+          transition-duration: 0s;
+          rotate: calc(var(--r, 0) * 90deg);
+          opacity: 1;
+        }
+
+        &:last-child {
+          &:hover {
+            color: #eafd64;
+          }
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-black flex items-center justify-center h-screen">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold text-left text-[#eafd64] mb-4">Hey !</h1>
+      <div class="grid" style="--o: 0.2; --r: 3">
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+        <div>+</div>
+      </div>
+      <div class="mt-6 flex justify-start space-x-6">
+        <a href="https://github.com/ebinesh25" class="text-white hover:text-gray-400">GitHub</a>
+        <a href="https://www.linkedin.com/in/ebinesh" class="text-white hover:text-gray-400">LinkedIn</a>
+      </div>
+    </div>
+  </body>
+</html>
